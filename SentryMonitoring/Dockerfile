@@ -6,11 +6,9 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
 COPY ["SentryMonitoring.csproj", "."]
 RUN dotnet restore "./SentryMonitoring.csproj"
 COPY . .
-WORKDIR "/src/."
 RUN dotnet build "SentryMonitoring.csproj" -c Release -o /app/build
 
 FROM build AS publish
