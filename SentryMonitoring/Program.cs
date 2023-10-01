@@ -3,7 +3,7 @@ using Sentry;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.WebHost.UseSentry(o=>
+builder.WebHost.UseSentry(o =>
 {
     o.Dsn = "https://a8c71b2e143c8dd8b3f52c9a70753b79@sentry.hamravesh.com/5734";
     // When configuring for the first time, to see what the SDK is doing:
@@ -19,11 +19,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
